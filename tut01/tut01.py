@@ -11,7 +11,7 @@ def meraki_helper(n):
 		c=int(num[i])
 		d=int(num[i+1])
 		if	abs(c-d)!=1:
-			print("No -",n," not a Meraki number")
+			print("No -",n," is not a Meraki number")
 			return	0
 			break;
 	print("Yes -",n," is a Meraki number")
