@@ -1,6 +1,6 @@
 import os
 def output_by_subject():
-	header=["rollno","register_sem","subno","subtype"]
+	header=["rollno","register_sem","subno","sub_type"]
 	dir="./output_by_subject//"
 	with open("regtable_old.csv","r") as f:
 		for line in f:
@@ -30,7 +30,7 @@ def output_by_subject():
 	return
 
 def output_individual_roll():
-	header=["rollno","register_sem","subno","subtype"]
+	header=["rollno","register_sem","subno","sub_type"]
 	dir="./output_individual_roll/"
 	with open("regtable_old.csv","r") as f:
 		for line in f:
