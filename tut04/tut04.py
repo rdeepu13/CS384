@@ -4,20 +4,19 @@ import openpyxl
 wb=Workbook()
 
 def output_by_subject():
-    with open('./regtable_old.csv', 'r') as file:      # check and edit the path
+    with open('./regtable_old.csv', 'r') as file:     
 	reader=csv.reader(file)
         sub = []
         for line in reader:
-            row = line.split(',')
-            if row[3] not in sub:
-                sub.append(row[3])
+            if line[3] not in sub:
+                sub.append(line[3])
         for i in range(0, len(sub)):
 	    wb.save("{}.xlsx",sub[i])
 	    sh=wb.create_sheet(sub[i])
             wb.load_workbook("{}.xlsx",sub[i])
 	    workbook.write("rollno,register_sem,subno,sub_type\n")
 	    wb.save("{}.xlsx",sub[i])
-    with open('./regtable_old.csv', 'r') as reg:      # check and edit the path
+    with open('./regtable_old.csv', 'r') as reg:    
 	row=csv.DictReader(reg)
 	del row[4:8]
 	row.pop(2)
