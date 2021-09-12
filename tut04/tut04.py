@@ -1,12 +1,9 @@
-import os
 import csv
 import openpyxl
 
 wb=Workbook()
 
 def output_by_subject():
-    filepath = os.path.join("./output_by_subject/")           # check and edit the path
-    os.mkdir(filepath)
     with open('./regtable_old.csv', 'r') as file:      # check and edit the path
 	reader=csv.reader(file)
         sub = []
@@ -31,8 +28,6 @@ def output_by_subject():
     return
 
 def output_individual_roll():
-    filepath = os.path.join("./output_individual_roll/")      # check and edit the path
-    os.mkdir(filepath)
     with open("./regtable_old.csv", "r") as file:      # check and edit the path
         reader=csv.reader(file)
         roll = []
