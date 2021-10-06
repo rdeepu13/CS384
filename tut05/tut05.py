@@ -7,47 +7,50 @@ import csv
 import openpyxl
 
 def generate_marksheet():
-
+	path=".\output"
 	#mapped roll no with names
 	Dict_from_f1={}
-	with open("C:\\Users\names-roll.csv",'r') as f1:
+	with open("names-roll.csv",'r') as f1:
 		reader=csv.reader(f1)
-		Dict_from_f1={int(row[0]):row[1] for row in reader}
+		Dict_from_f1={row[0]:row[1] for row in reader}
 	f1.close()
 
 	roll_list=[] 	#stores all roll no
-	with open("C:\\Users\grade.csv") as f:
+	with open("grades.csv") as f:
 		csv_file=csv.DictReader(f)
 		for row in csv_file:
 			roll=row["Roll"]
 			roll_list.append(roll)
 			curr_sem="Sem"+row["Sem"]
 			sub_code=row["SubCode"]
-			filename=".\output"+roll+".xlsx"
+			filename=roll+".xlsx"
+			filedir=os.path.join(path,filename)
 			try:
-				wb=openpyxl.load_workbook(filename)
+				wb=openpyxl.load_workbook(filedir)
 			except:
 				wb=openpyxl.Workbook()
 			try:
-				sheet=wb.get_sheet_by_name(curr_sem)			
+				sheet=wb[curr_sem]		
 			except:
 				sheet=wb.create_sheet(curr_sem)
 				sheet.append(["S.No","Subject No","Subject Name","L-T-P","Credit","Subject Type","Grade"])
 			list=[]
-			with open("subjects master.csv") as f2:
-				for i,r in enumerate(f2):
-					if i["subno"]==sub_code:
-						list=r
+			with open("subjects_master.csv") as f2:
+				r=csv.reader(f2)
+				for i in r:
+					if i[0]==sub_code:
+						list=i
 			f2.close()
-			list=[1]+list+row["Sub_Type"]+row["Grade"]
-			sheet.append(list)	
-			wb.save(filename)
+			l=[1]+list+[row["Sub_Type"]]+[row["Grade"]]
+			sheet.append(l)	
+			wb.save(filedir)
 	f.close()
 	Grading={'AA':10,'AB':9,'BB':8,'BC':7,'CC':6,'CD':5,'DD':4,'F':0,'I':0}
 	roll_list=list(set(roll_list))		#using set to remove duplicated rollno from list
 	for filename in roll_list:
-		file_name=".\output"+filename
-		wb=openpyxl.load_workbook(file_name)
+		file_name=filename+".xlsx"
+		filedir=os.path.join(path,file_name)
+		wb=openpyxl.load_workbook(filedir)
 		sheet=wb.active()
 		sheet['A1']="Roll No"
 		sheet['B1']=roll
@@ -92,7 +95,7 @@ def generate_marksheet():
 			sheet.cell(row=6,column=i).value=spi[j];
 			sheet.cell(row=7,column=i).value=cpi[j];
 			j+=1
-		wb.save(filename)
+		wb.save(filedir)
 	return
 
 generate_marksheet()
