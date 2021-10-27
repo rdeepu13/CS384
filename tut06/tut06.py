@@ -18,8 +18,6 @@ def regex_renamer():
 
 	# Taking input from the user
 
-
-
 	print("1. Breaking Bad")
 
 	print("2. Game of Thrones")
@@ -33,8 +31,6 @@ def regex_renamer():
 	season_padding = int(input("Enter the Season Number Padding: "))
 
 	episode_padding = int(input("Enter the Episode Number Padding: "))
-
-
 
 
 	if webseries_num==1:
