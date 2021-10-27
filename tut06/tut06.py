@@ -55,7 +55,7 @@ def regex_renamer():
 		r=re.split(r'-',filename)
 
 		if webseries_num==1:
-
+	#no title in case of breaking bad
 			x=re.split(r'\D',r[1])
 
 		else:
