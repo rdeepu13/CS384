@@ -35,6 +35,7 @@ def generate_transcript(roll):
 	try:
 		Name = get_name[roll]
 	except:
+		print("This roll no. doesnt exist",roll)
 		return
 	Year_of_Adm = "20"+roll[0:2]
 	if roll[2:4]=="01":
@@ -150,13 +151,13 @@ def generate_transcript(roll):
 
 def generate1():	#Function for option 1
 	R1=entry1.get()
-	R2=entry1.get()
+	R2=entry2.get()
 	first_s=R1[6:8]
 	rest=R1[0:6]
 	last_s=R2[6:8]
 	first=int(first_s)
 	last=int(last_s)
-	for i in (first,last+1):
+	for i in range(first,last+1):
 		if len(str(i))==1:
 			i="0"+str(i)
 		for_roll=rest+str(i)
