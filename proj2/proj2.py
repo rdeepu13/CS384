@@ -144,7 +144,7 @@ def generate_transcript(roll):
 		pdf.image(img_f,18.0+((curr_sem-1)%3)*130,59.0+(int((curr_sem-1)/3))*75,96,53)	#prints dataframe of particular semester to image in pdf
 		pdf.rect(18.0+((curr_sem-1)%3)*130,37.0+(int((curr_sem-1)/3)+1)*75,115.0,6.0)	#makes grid for semester detail
 		pdf.text(18.0+((curr_sem-1)%3)*130,42.0+(int((curr_sem-1)/3)+1)*75,line_sem)	#prints details
-
+	pdf.text(pdf_w-80.0,pdf_h-15.0,"Assistant Registrar(Academic)")
 	pdf.output(filename,'F')
 	P.close()
 	return
