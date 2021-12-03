@@ -13,7 +13,7 @@ import cv
 hti=Html2Image()	#constructor
 
 window=tk.Tk()
-window.geometry("1000x300")
+window.geometry("1000x200")
 window.config(background = "white")
 window.title("GUI Based Transcript Generator")	#to define the title
 entry1=tk.StringVar()
