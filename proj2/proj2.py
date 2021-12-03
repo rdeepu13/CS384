@@ -18,10 +18,10 @@ window.config(background = "white")
 window.title("GUI Based Transcript Generator")	#to define the title
 entry1=tk.StringVar()
 entry2=tk.StringVar()
-subject_data=pd.read_csv(r"E:/1901EE19_2021/proj2/sample_input/subjects_master.csv",header=0,delimiter=',')	#edit
-grade_data=pd.read_csv(r"E:/1901EE19_2021/proj2/sample_input/grades.csv")	#edit
-path='E:/1901EE19_2021/proj2/transcriptsIITP'	#edit
-with open("E:/1901EE19_2021/proj2/sample_input/names-roll.csv") as f:	#edit
+subject_data=pd.read_csv(r"./1901EE19_2021/proj2/sample_input/subjects_master.csv",header=0,delimiter=',')	#edit
+grade_data=pd.read_csv(r"./1901EE19_2021/proj2/sample_input/grades.csv")	#edit
+path='./1901EE19_2021/proj2/transcriptsIITP'	#edit
+with open("./1901EE19_2021/proj2/sample_input/names-roll.csv") as f:	#edit
 	reader=csv.reader(f)
 	get_name={row[0]:row[1] for row in reader}	#get_name maps rollno with name 
 f.close()
