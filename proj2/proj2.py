@@ -8,10 +8,10 @@ import tkinter as tk
 from tkinter import filedialog
 from tkinter import *
 from html2image import Html2Image
-import cv
+import codecs
 
 hti=Html2Image()	#constructor
-
+pdf=FPDF()
 window=tk.Tk()
 window.geometry("1000x200")
 window.config(background = "white")
@@ -170,13 +170,36 @@ def	generate2():	#Function for Option 2
 		generate_transcript(roll)
 	
 def browseFiles():
-	filename1=filedialog.askopenfile(initialdir='/',title="Select a file",filetypes=[("*all files","*.*")])
-	label_file_explorer.configure(text="File Opened: "+str(filename1))
+	try:
+		filename1=filedialog.askopenfile(initialdir='/',title="Select a file",filetypes=[("*all files","*.*")])
+		label_file_explorer.configure(text="File Opened: "+str(filename1))
+		if filename1=='':
+			return
+		files=os.listdir(path)
+		for filename in files:
+			P=codecs.open(filename,'a',errors="ignore",encoding='cp1252')
+			pdf.add_page()
+			pdf.image(filename1,380,250,20,20)
+			pdf.output(filename,'F')
+			P.close()
+	except:
+		return
 
 def browseFiles2():
-	filename2=filedialog.askopenfile(initialdir='/',title="Select a file",filetypes=[("*all files","*.*")])
-	label_file_explorer2.configure(text="File Opened: "+str(filename2))
-
+	try:
+		filename2=filedialog.askopenfile(initialdir='/',title="Select a file",filetypes=[("*all files","*.*")])
+		label_file_explorer2.configure(text="File Opened: "+str(filename2))
+		if filename2=='':
+			return
+		files=os.listdir(path)
+		for filename in files:
+			P=open(filename,'a')
+			P.add_page()
+			pdf.image(filename2,380,270,20,20)
+			pdf.output(filename,'F')
+			P.close()
+	except:
+		return
 entry11=tk.Entry(window,textvariable=entry1,font=('calibre',10,'normal')) #input lower limit
 entry22=tk.Entry(window,textvariable=entry2,font=('calibre',10,'normal'))	#input upper limit
 entry11.grid(row=1,column=2)	#setting location for getting lower limit
