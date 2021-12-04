@@ -26,7 +26,6 @@ with open("./1901EE19_2021/proj2/sample_input/names-roll.csv") as f:	#edit
 	get_name={row[0]:row[1] for row in reader}	#get_name maps rollno with name 
 f.close()
 
-
 class PDF(FPDF):
 	pass
 
@@ -126,7 +125,6 @@ def generate_transcript(roll):
 		sheet=sheet.reindex(columns=column)
 		sheet=sheet.rename(columns={'subname':'Subject Name','ltp':'L-T-P','crd':'CRD','Grade':'GRD'})
 		#print(sheet.head) 
-
 		Sem="Semester"+str(curr_sem)
 		img_f="Semester"+str(curr_sem)+".png"
 		img_file=os.path.join(path,img_f)
@@ -136,10 +134,8 @@ def generate_transcript(roll):
 		x=open("E:/index.html",'w')
 		x.write(html)
 		x.close()
-
 		hti.screenshot(html_file="index.html",save_as=img_f)	#conversion to img file
 		line_sem="Credits Taken: "+str(sem_credit)+" Credits Cleared: "+str((sem_credit-clr))+" SPI: "+str(spi)+" CPI: "+str(cpi)
-
 		pdf.text(20.0+((curr_sem-1)%3)*130,58.0+(int((curr_sem-1)/3))*75,Sem)	#For printing the current semester
 		pdf.image(img_f,18.0+((curr_sem-1)%3)*130,59.0+(int((curr_sem-1)/3))*75,96,53)	#prints dataframe of particular semester to image in pdf
 		pdf.rect(18.0+((curr_sem-1)%3)*130,37.0+(int((curr_sem-1)/3)+1)*75,115.0,6.0)	#makes grid for semester detail
@@ -208,8 +204,8 @@ btn1=tk.Button(window,text="Generate Transcripts for a given range",command=lamb
 btn2=tk.Button(window,text="Generate all Transcripts",command=lambda:generate2()).grid(row=2,column=1)	#button for option2
 label_file_explorer=Label(window,text="Upload Seal",width=100,height=2,fg='blue')
 label_file_explorer2=Label(window,text="Upload Signature",width=100,height=2,fg='blue')
-button_explore=tk.Button(window,text="Browse File",command=browseFiles)
-button_explore2=tk.Button(window,text="Browse File",command=browseFiles2)
+button_explore=tk.Button(window,text="Browse File",command=lambda:browseFiles())
+button_explore2=tk.Button(window,text="Browse File",command=lambda:browseFiles2())
 label_file_explorer.grid(row=3,column=1)
 label_file_explorer2.grid(row=4,column=1)
 button_explore.grid(row=3,column=2)	#location for taking seal
